@@ -61,7 +61,7 @@ Add it in your root build.gradle at the end of repositories:
 
 ```
 	dependencies {
-	        implementation 'com.github.xiongms:lib_update:1.0.1'
+	        implementation 'com.github.xiongms:lib_update:1.1.0'
 	}
 ```
 
