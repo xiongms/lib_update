@@ -1,7 +1,4 @@
-
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
@@ -10,7 +7,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -28,18 +25,16 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.30"
 
     api project(':LibUpdate')
 
-    //api 'com.qianwen:update-app-kotlin:1.1.0'
     //okgo
     //rxjava 1
     api 'com.android.support:palette-v7:28.0.0'
     //权限引导
     api 'com.android.support:appcompat-v7:28.0.0'
 
-    api 'com.android.support.constraint:constraint-layout:1.0.2'
+    api 'com.android.support.constraint:constraint-layout:1.1.3'
 
     api 'com.qianwen:okhttp-utils:3.8.0'
 
