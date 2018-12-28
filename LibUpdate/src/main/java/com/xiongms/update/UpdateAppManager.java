@@ -21,7 +21,6 @@ import com.xiongms.update.listener.IUpdateDialogFragmentListener;
 import com.xiongms.update.service.DownloadService;
 import com.xiongms.update.utils.AppUpdateUtils;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -34,8 +33,7 @@ public class UpdateAppManager {
     private final static String UPDATE_APP_KEY = "UPDATE_APP_KEY";
     private static final String TAG = UpdateAppManager.class.getSimpleName();
     private Map<String, String> mParams;
-    // 是否忽略默认参数，解决
-    private boolean mIgnoreDefParams = false;
+
     private Activity mActivity;
     private HttpManager mHttpManager;
     private String mUpdateUrl;
@@ -43,7 +41,7 @@ public class UpdateAppManager {
     private
     @DrawableRes
     int mTopPic;
-    private String mAppKey;
+
     private UpdateAppBean mUpdateApp;
     private String mTargetPath;
     private boolean isPost;
@@ -62,10 +60,6 @@ public class UpdateAppManager {
         mThemeColor = builder.getThemeColor();
         mTopPic = builder.getTopPic();
 
-        mIgnoreDefParams = builder.isIgnoreDefParams();
-        if(!mIgnoreDefParams) {
-            mAppKey = builder.getAppKey();
-        }
         mTargetPath = builder.getTargetPath();
         isPost = builder.isPost();
         mParams = builder.getParams();
@@ -105,29 +99,6 @@ public class UpdateAppManager {
     public Context getContext() {
         return mActivity;
     }
-
-    /**
-     * 跳转到更新页面
-     */
-//    public void showDialog() {
-//        if (verify()) return;
-//
-//
-//        if (mActivity != null && !mActivity.isFinishing()) {
-//            Intent updateIntent = new Intent(mActivity, DialogActivity.class);
-//            fillUpdateAppData();
-//            updateIntent.putExtra(INTENT_KEY, mUpdateApp);
-//            if (mThemeColor != 0) {
-//                updateIntent.putExtra(THEME_KEY, mThemeColor);
-//            }
-//
-//            if (mTopPic != 0) {
-//                updateIntent.putExtra(TOP_IMAGE_KEY, mTopPic);
-//            }
-//            mActivity.startActivity(updateIntent);
-//        }
-//
-//    }
 
     /**
      * @return 新版本信息
@@ -226,32 +197,9 @@ public class UpdateAppManager {
             return;
         }
 
-        //拼接参数
-        Map<String, String> params = new HashMap<String, String>();
-        if(!mIgnoreDefParams) {
-            if (!TextUtils.isEmpty(mAppKey)) {
-                params.put("appKey", mAppKey);
-            }
-            String versionName = AppUpdateUtils.getVersionName(mActivity);
-            //过滤掉，debug 这情况
-            if (versionName.endsWith("-debug")) {
-                versionName = versionName.substring(0, versionName.lastIndexOf('-'));
-            }
-            if (!TextUtils.isEmpty(versionName)) {
-                params.put("version", versionName);
-            }
-        }
-
-        //添加自定义参数，其实可以实现HttManager中添加
-        if (mParams != null && !mParams.isEmpty()) {
-            //清空，那就使用自定参数
-            params.clear();
-            params.putAll(mParams);
-        }
-
         //网络请求
         if (isPost) {
-            mHttpManager.asyncPost(mUpdateUrl, params, new HttpManager.Callback() {
+            mHttpManager.asyncPost(mUpdateUrl, mParams, new HttpManager.Callback() {
                 @Override
                 public void onResponse(String result) {
                     callback.onAfter();
@@ -267,7 +215,7 @@ public class UpdateAppManager {
                 }
             });
         } else {
-            mHttpManager.asyncGet(mUpdateUrl, params, new HttpManager.Callback() {
+            mHttpManager.asyncGet(mUpdateUrl, mParams, new HttpManager.Callback() {
                 @Override
                 public void onResponse(String result) {
                     callback.onAfter();
