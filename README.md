@@ -3,7 +3,7 @@
 
 ## Android 版本更新
 
-[![Download](https://jitpack.io/v/xiongms/lib_update.svg)](https://jitpack.io/#xiongms/lib_update) [![API](https://img.shields.io/badge/API-14%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=16) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub stars](https://img.shields.io/github/stars/xiongms/lib_update.svg?style=plastic&label=Star) ](https://github.com/xiongms/lib_update)
+[![Download](https://jitpack.io/v/xiongms/lib_update.svg)](https://jitpack.io/#xiongms/lib_update) [![API](https://img.shields.io/badge/API-16%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=16) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub stars](https://img.shields.io/github/stars/xiongms/lib_update.svg?style=plastic&label=Star) ](https://github.com/xiongms/lib_update)
 
 ## 目录
 
