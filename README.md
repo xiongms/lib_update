@@ -3,6 +3,8 @@
 
 ## Android 版本更新
 
+[![](https://jitpack.io/v/xiongms/lib_update.svg)](https://jitpack.io/#xiongms/lib_update)
+
 ## 目录
 
 * [功能介绍](#功能介绍)
