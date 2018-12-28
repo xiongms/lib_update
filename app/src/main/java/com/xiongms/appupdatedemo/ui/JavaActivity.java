@@ -45,7 +45,7 @@ public class JavaActivity extends AppCompatActivity {
     private String mUpdateUrl = "https://raw.githubusercontent.com/xiongms/lib_update/master/json/normal.json";
     private String mUpdateUrl1 = "https://raw.githubusercontent.com/xiongms/lib_update/master/json/constraint.json";
     private boolean isShowDownloadProgress;
-    private String mApkFileUrl = "https://raw.githubusercontent.com/WVector/AppUpdateDemo/master/apk/sample-debug.apk";
+    private String mApkFileUrl = "https://raw.githubusercontent.com/xiongms/lib_update/master/app/release/app-release.apk";
 
 
     @Override
@@ -73,9 +73,9 @@ public class JavaActivity extends AppCompatActivity {
                     @Override
                     public void call(Boolean aBoolean) {
                         if (aBoolean) {
-                            Toast.makeText(JavaActivity.this, "已授权", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(JavaActivity.this, "已授权访问文件存储", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(JavaActivity.this, "未授权", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(JavaActivity.this, "未授权访问文件存储", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
