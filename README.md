@@ -3,7 +3,7 @@
 
 ## Android 版本更新
 
-[![](https://jitpack.io/v/xiongms/lib_update.svg)](https://jitpack.io/#xiongms/lib_update)
+[![Download](https://jitpack.io/v/xiongms/lib_update.svg)](https://jitpack.io/#xiongms/lib_update) [![API](https://img.shields.io/badge/API-14%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=16) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub stars](https://img.shields.io/github/stars/xiongms/lib_update.svg?style=plastic&label=Star) ](https://github.com/xiongms/lib_update)
 
 ## 目录
 
@@ -65,7 +65,6 @@ Add it in your root build.gradle at the end of repositories:
 	}
 ```
 
-[![Download](https://api.bintray.com/packages/qianwen/maven/update-app/images/download.svg) ](https://bintray.com/qianwen/maven/update-app/_latestVersion) [![API](https://img.shields.io/badge/API-14%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=14) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub stars](https://img.shields.io/github/stars/WVector/AppUpdate.svg?style=plastic&label=Star) ](https://github.com/WVector/AppUpdate)
 
 
 
