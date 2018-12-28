@@ -1,7 +1,5 @@
 package com.xiongms.update;
 
-import android.text.TextUtils;
-
 import java.io.Serializable;
 
 /**
@@ -20,7 +18,7 @@ public class UpdateAppBean implements Serializable {
      * target_size : 601132
      */
     //是否有新版本
-    private String update;
+    private boolean update;
     //新版本号
     private String new_version;
     //新app下载地址
@@ -59,7 +57,7 @@ public class UpdateAppBean implements Serializable {
     }
 
     public boolean isUpdate() {
-        return !TextUtils.isEmpty(this.update) && "Yes".equals(this.update);
+        return update;
     }
 
     public HttpManager getHttpManager() {
@@ -87,11 +85,7 @@ public class UpdateAppBean implements Serializable {
         return this;
     }
 
-    public String getUpdate() {
-        return update;
-    }
-
-    public UpdateAppBean setUpdate(String update) {
+    public UpdateAppBean setUpdate(boolean update) {
         this.update = update;
         return this;
     }

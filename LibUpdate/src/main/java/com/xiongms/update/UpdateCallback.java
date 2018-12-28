@@ -17,7 +17,7 @@ public class UpdateCallback {
         UpdateAppBean updateAppBean = new UpdateAppBean();
         try {
             JSONObject jsonObject = new JSONObject(json);
-            updateAppBean.setUpdate(jsonObject.optString("update"))
+            updateAppBean.setUpdate(jsonObject.optBoolean("update"))
                     //存放json，方便自定义解析
                     .setOriginRes(json)
                     .setNewVersion(jsonObject.optString("new_version"))

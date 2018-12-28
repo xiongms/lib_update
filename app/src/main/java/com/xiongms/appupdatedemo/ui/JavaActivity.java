@@ -216,7 +216,7 @@ public class JavaActivity extends AppCompatActivity {
                             final String newVersion = jsonObject.optString("new_version");
                             updateAppBean
                                     //（必须）是否更新Yes,No
-                                    .setUpdate(jsonObject.optString("update"))
+                                    .setUpdate(jsonObject.optBoolean("update"))
                                     //（必须）新版本号，
                                     .setNewVersion(newVersion)
                                     //（必须）下载地址
@@ -423,7 +423,7 @@ public class JavaActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(json);
                             updateAppBean
                                     //（必须）是否更新Yes,No
-                                    .setUpdate(jsonObject.optString("update"))
+                                    .setUpdate(jsonObject.optBoolean("update"))
                                     //（必须）新版本号，
                                     .setNewVersion(jsonObject.optString("new_version"))
                                     //（必须）下载地址
