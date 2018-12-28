@@ -80,7 +80,7 @@ public interface HttpManager extends Serializable {
          *
          * @param result 结果
          */
-        void onResponse(String result);
+        void onResponse(Object result);
 
         /**
          * 错误回调

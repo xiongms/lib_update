@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -51,6 +52,8 @@ public class UpdateAppManager {
     private boolean mOnlyWifi;
     //自定义参数
     private IUpdateDialogFragmentListener mUpdateDialogFragmentListener;
+
+    private Handler mHandler = new Handler();
 
     private UpdateAppManager(Builder builder) {
         mActivity = builder.getActivity();
@@ -201,7 +204,8 @@ public class UpdateAppManager {
         if (isPost) {
             mHttpManager.asyncPost(mUpdateUrl, mParams, new HttpManager.Callback() {
                 @Override
-                public void onResponse(String result) {
+                public void onResponse(Object result) {
+
                     callback.onAfter();
                     if (result != null) {
                         processData(result, callback);
@@ -217,7 +221,7 @@ public class UpdateAppManager {
         } else {
             mHttpManager.asyncGet(mUpdateUrl, mParams, new HttpManager.Callback() {
                 @Override
-                public void onResponse(String result) {
+                public void onResponse(Object result) {
                     callback.onAfter();
                     if (result != null) {
                         processData(result, callback);
@@ -270,9 +274,15 @@ public class UpdateAppManager {
      * @param result
      * @param callback
      */
-    private void processData(String result, @NonNull UpdateCallback callback) {
+    private void processData(Object result, @NonNull UpdateCallback callback) {
         try {
-            mUpdateApp = callback.parseJson(result);
+            if(result instanceof UpdateAppBean) {
+                mUpdateApp = (UpdateAppBean) result;
+            } else if(result instanceof String) {
+                mUpdateApp = callback.parseJson((String) result);
+            } else {
+                throw new RuntimeException("不支持的更新接口返回数据类型");
+            }
             if (mUpdateApp.isUpdate()) {
                 callback.hasNewApp(mUpdateApp, this);
                 //假如是静默下载，可能需要判断，
