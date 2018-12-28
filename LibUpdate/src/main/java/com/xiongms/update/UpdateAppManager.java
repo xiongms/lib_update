@@ -311,8 +311,6 @@ public class UpdateAppManager {
         private boolean isPost;
         //6,自定义参数
         private Map<String, String> params;
-        // 是否忽略默认参数，解决
-        private boolean mIgnoreDefParams = false;
         //7,是否隐藏对话框下载进度条
         private boolean mHideDialog = false;
         private boolean mShowIgnoreVersion;
@@ -332,19 +330,6 @@ public class UpdateAppManager {
          */
         public Builder setParams(Map<String, String> params) {
             this.params = params;
-            return this;
-        }
-
-        public boolean isIgnoreDefParams() {
-            return mIgnoreDefParams;
-        }
-
-        /**
-         * @param ignoreDefParams 是否忽略默认的参数注入 appKey version
-         * @return Builder
-         */
-        public Builder setIgnoreDefParams(boolean ignoreDefParams) {
-            this.mIgnoreDefParams = ignoreDefParams;
             return this;
         }
 
