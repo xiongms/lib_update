@@ -42,8 +42,8 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class JavaActivity extends AppCompatActivity {
     private static final String TAG = JavaActivity.class.getSimpleName();
-    private String mUpdateUrl = "https://raw.githubusercontent.com/WVector/AppUpdateDemo/master/json/json.txt";
-    private String mUpdateUrl1 = "https://raw.githubusercontent.com/WVector/AppUpdateDemo/master/json/json1.txt";
+    private String mUpdateUrl = "https://raw.githubusercontent.com/xiongms/lib_update/master/json/normal.json";
+    private String mUpdateUrl1 = "https://raw.githubusercontent.com/xiongms/lib_update/master/json/constraint.json";
     private boolean isShowDownloadProgress;
     private String mApkFileUrl = "https://raw.githubusercontent.com/WVector/AppUpdateDemo/master/apk/sample-debug.apk";
 
