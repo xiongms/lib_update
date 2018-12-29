@@ -3,7 +3,7 @@
 
 ## Android 版本更新
 
-[![](https://jitpack.io/v/xiongms/lib_update.svg)](https://jitpack.io/#xiongms/lib_update)
+[![Download](https://jitpack.io/v/xiongms/lib_update.svg)](https://jitpack.io/#xiongms/lib_update) [![API](https://img.shields.io/badge/API-16%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=16) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub stars](https://img.shields.io/github/stars/xiongms/lib_update.svg?style=plastic&label=Star) ](https://github.com/xiongms/lib_update)
 
 ## 目录
 
@@ -29,20 +29,14 @@
 
 ## 效果图与示例 apk
 
-<img src="https://raw.githubusercontent.com/WVector/AppUpdateDemo/master/image/example_01.png?raw=true" width="1000">
+<img src="https://raw.githubusercontent.com/xiongms/lib_update/master/image/example_01.png?raw=true" width="1000">
 
-<img src="https://raw.githubusercontent.com/WVector/AppUpdateDemo/master/image/example_02.png?raw=true" width="1000">
-
-<img src="https://raw.githubusercontent.com/WVector/AppUpdateDemo/master/image/example_03.png?raw=true" width="1000">
-
-<img src="https://raw.githubusercontent.com/WVector/AppUpdateDemo/master/image/example_05.png" width="1000">
-
-<img src="https://raw.githubusercontent.com/WVector/AppUpdateDemo/master/image/example_06.png" width="1000">
+<img src="https://raw.githubusercontent.com/xiongms/lib_update/master/image/example_02.png?raw=true" width="1000">
 
 	
-[点击下载 Demo.apk](https://raw.githubusercontent.com/WVector/AppUpdateDemo/master/apk/sample-debug.apk) 或扫描下面的二维码安装
+[点击下载 Demo.apk](https://raw.githubusercontent.com/xiongms/lib_update/master/app/release/app-release.apk) 或扫描下面的二维码安装
 
-![Demo apk文件二维](https://raw.githubusercontent.com/WVector/AppUpdateDemo/master/image/1498810770.png)
+![Demo apk文件二维](https://github.com/xiongms/lib_update/blob/master/image/apk_download.png?raw=true)
 
 
 
@@ -67,11 +61,10 @@ Add it in your root build.gradle at the end of repositories:
 
 ```
 	dependencies {
-	        implementation 'com.github.xiongms:lib_update:1.0.1'
+	        implementation 'com.github.xiongms:lib_update:1.1.0'
 	}
 ```
 
-[![Download](https://api.bintray.com/packages/qianwen/maven/update-app/images/download.svg) ](https://bintray.com/qianwen/maven/update-app/_latestVersion) [![API](https://img.shields.io/badge/API-14%2B-orange.svg?style=flat)](https://android-arsenal.com/api?level=14) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![GitHub stars](https://img.shields.io/github/stars/WVector/AppUpdate.svg?style=plastic&label=Star) ](https://github.com/WVector/AppUpdate)
 
 
 
