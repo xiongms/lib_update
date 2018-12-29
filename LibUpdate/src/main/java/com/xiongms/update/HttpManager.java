@@ -11,23 +11,13 @@ import java.util.Map;
  */
 public interface HttpManager extends Serializable {
     /**
-     * 异步get
+     * 异步请求更新数据
      *
      * @param url      get请求地址
      * @param params   get参数
      * @param callBack 回调
      */
-    void asyncGet(@NonNull String url, Map<String, String> params, @NonNull Callback callBack);
-
-
-    /**
-     * 异步post
-     *
-     * @param url      post请求地址
-     * @param params   post请求参数
-     * @param callBack 回调
-     */
-    void asyncPost(@NonNull String url, Map<String, String> params, @NonNull Callback callBack);
+    void asyncRequest(@NonNull String url, Map<String, String> params, @NonNull Callback callBack);
 
     /**
      * 下载
@@ -80,7 +70,7 @@ public interface HttpManager extends Serializable {
          *
          * @param result 结果
          */
-        void onResponse(Object result);
+        void onResponse(UpdateAppBean result);
 
         /**
          * 错误回调

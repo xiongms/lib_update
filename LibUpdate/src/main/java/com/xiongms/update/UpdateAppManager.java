@@ -127,11 +127,7 @@ public class UpdateAppManager {
             return true;
         }
 
-//        String preSuffix = "/storage/emulated";
-
-        if (TextUtils.isEmpty(mTargetPath)
-//                || !mTargetPath.startsWith(preSuffix)
-                ) {
+        if (TextUtils.isEmpty(mTargetPath)) {
             Log.e(TAG, "下载路径错误:" + mTargetPath);
             return true;
         }
@@ -201,40 +197,21 @@ public class UpdateAppManager {
         }
 
         //网络请求
-        if (isPost) {
-            mHttpManager.asyncPost(mUpdateUrl, mParams, new HttpManager.Callback() {
-                @Override
-                public void onResponse(Object result) {
+        mHttpManager.asyncRequest(mUpdateUrl, mParams, new HttpManager.Callback() {
+            @Override
+            public void onResponse(UpdateAppBean result) {
+                callback.onAfter();
+                if (result != null) {
+                    processData(result, callback);
+                }
+            }
 
-                    callback.onAfter();
-                    if (result != null) {
-                        processData(result, callback);
-                    }
-                }
-
-                @Override
-                public void onError(String error) {
-                    callback.onAfter();
-                    callback.noNewApp(error);
-                }
-            });
-        } else {
-            mHttpManager.asyncGet(mUpdateUrl, mParams, new HttpManager.Callback() {
-                @Override
-                public void onResponse(Object result) {
-                    callback.onAfter();
-                    if (result != null) {
-                        processData(result, callback);
-                    }
-                }
-
-                @Override
-                public void onError(String error) {
-                    callback.onAfter();
-                    callback.noNewApp(error);
-                }
-            });
-        }
+            @Override
+            public void onError(String error) {
+                callback.onAfter();
+                callback.noNewApp(error);
+            }
+        });
     }
 
     /**
@@ -274,15 +251,9 @@ public class UpdateAppManager {
      * @param result
      * @param callback
      */
-    private void processData(Object result, @NonNull UpdateCallback callback) {
+    private void processData(UpdateAppBean result, @NonNull UpdateCallback callback) {
         try {
-            if(result instanceof UpdateAppBean) {
-                mUpdateApp = (UpdateAppBean) result;
-            } else if(result instanceof String) {
-                mUpdateApp = callback.parseJson((String) result);
-            } else {
-                throw new RuntimeException("不支持的更新接口返回数据类型");
-            }
+            mUpdateApp = result;
             if (mUpdateApp.isUpdate()) {
                 callback.hasNewApp(mUpdateApp, this);
                 //假如是静默下载，可能需要判断，

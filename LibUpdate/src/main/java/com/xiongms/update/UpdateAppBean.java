@@ -35,8 +35,6 @@ public class UpdateAppBean implements Serializable {
     private String new_md5;
     //是否增量 暂时不用
     private boolean delta;
-    //服务器端的原生返回数据（json）,方便使用者在hasNewApp自定义渲染dialog的时候可以有别的控制，比如：#issues/59
-    private String origin_res;
     /**********以下是内部使用的数据**********/
 
     //网络工具，内部使用
@@ -175,15 +173,6 @@ public class UpdateAppBean implements Serializable {
 
     public void setOnlyWifi(boolean onlyWifi) {
         mOnlyWifi = onlyWifi;
-    }
-
-    public String getOriginRes() {
-        return origin_res;
-    }
-
-    public UpdateAppBean setOriginRes(String originRes) {
-        this.origin_res = originRes;
-        return this;
     }
 
 }

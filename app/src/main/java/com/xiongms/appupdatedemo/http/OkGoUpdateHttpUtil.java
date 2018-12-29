@@ -5,6 +5,9 @@ import android.support.annotation.NonNull;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Progress;
 import com.xiongms.update.HttpManager;
+import com.xiongms.update.UpdateAppBean;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.Map;
@@ -22,34 +25,25 @@ public class OkGoUpdateHttpUtil implements HttpManager {
      * @param callBack 回调
      */
     @Override
-    public void asyncGet(@NonNull String url, @NonNull Map<String, String> params, @NonNull final Callback callBack) {
+    public void asyncRequest(@NonNull String url, @NonNull Map<String, String> params, @NonNull final Callback callBack) {
         OkGo.<String>get(url).params(params).execute(new com.lzy.okgo.callback.StringCallback() {
             @Override
             public void onSuccess(com.lzy.okgo.model.Response<String> response) {
-                callBack.onResponse(response.body());
-            }
 
-            @Override
-            public void onError(com.lzy.okgo.model.Response<String> response) {
-                super.onError(response);
-                callBack.onError("异常");
-            }
-        });
-    }
-
-    /**
-     * 异步post
-     *
-     * @param url      post请求地址
-     * @param params   post请求参数
-     * @param callBack 回调
-     */
-    @Override
-    public void asyncPost(@NonNull String url, @NonNull Map<String, String> params, @NonNull final Callback callBack) {
-        OkGo.<String>post(url).params(params).execute(new com.lzy.okgo.callback.StringCallback() {
-            @Override
-            public void onSuccess(com.lzy.okgo.model.Response<String> response) {
-                callBack.onResponse(response.body());
+                UpdateAppBean updateAppBean = new UpdateAppBean();
+                try {
+                    JSONObject jsonObject = new JSONObject(response.body());
+                    updateAppBean.setUpdate(jsonObject.optBoolean("update"))
+                            .setNewVersion(jsonObject.optString("new_version"))
+                            .setApkFileUrl(jsonObject.optString("apk_file_url"))
+                            .setTargetSize(jsonObject.optString("target_size"))
+                            .setUpdateLog(jsonObject.optString("update_log"))
+                            .setConstraint(jsonObject.optBoolean("constraint"))
+                            .setNewMd5(jsonObject.optString("new_md5"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                callBack.onResponse(updateAppBean);
             }
 
             @Override

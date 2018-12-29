@@ -29,9 +29,6 @@ import com.xiongms.update.service.DownloadService;
 import com.xiongms.update.utils.AppUpdateUtils;
 import com.xiongms.update.utils.DrawableUtil;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -202,45 +199,6 @@ public class JavaActivity extends AppCompatActivity {
                 .build()
                 //检测是否有新版本
                 .checkNewApp(new UpdateCallback() {
-                    /**
-                     * 解析json,自定义协议
-                     *
-                     * @param json 服务器返回的json
-                     * @return UpdateAppBean
-                     */
-                    @Override
-                    protected UpdateAppBean parseJson(String json) {
-                        UpdateAppBean updateAppBean = new UpdateAppBean();
-                        try {
-                            JSONObject jsonObject = new JSONObject(json);
-                            final String newVersion = jsonObject.optString("new_version");
-                            updateAppBean
-                                    //（必须）是否更新Yes,No
-                                    .setUpdate(jsonObject.optBoolean("update"))
-                                    //（必须）新版本号，
-                                    .setNewVersion(newVersion)
-                                    //（必须）下载地址
-                                    .setApkFileUrl(jsonObject.optString("apk_file_url"))
-                                    //测试下载路径是重定向路径
-//                                    .setApkFileUrl("http://openbox.mobilem.360.cn/index/d/sid/3282847")
-//                                    .setUpdateDefDialogTitle(String.format("AppUpdate 是否升级到%s版本？", newVersion))
-                                    //（必须）更新内容
-//                                    .setUpdateLog(jsonObject.optString("update_log"))
-                                    //测试内容过度
-//                                    .setUpdateLog("测试")
-                                    .setUpdateLog("1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16")
-//                                    .setUpdateLog("今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说相对于其他行业来说今天我们来聊一聊程序员枯燥的编程生活，相对于其他行业来说\r\n")
-                                    //大小，不设置不显示大小，可以不设置
-                                    .setTargetSize(jsonObject.optString("target_size"))
-                                    //是否强制更新，可以不设置
-                                    .setConstraint(true)
-                                    //设置md5，可以不设置
-                                    .setNewMd5(jsonObject.optString("new_md5"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        return updateAppBean;
-                    }
 
                     @Override
                     protected void hasNewApp(UpdateAppBean updateApp, UpdateAppManager updateAppManager) {
@@ -410,37 +368,6 @@ public class JavaActivity extends AppCompatActivity {
                 .build()
                 //检测是否有新版本
                 .checkNewApp(new UpdateCallback() {
-                    /**
-                     * 解析json,自定义协议
-                     *
-                     * @param json 服务器返回的json
-                     * @return UpdateAppBean
-                     */
-                    @Override
-                    protected UpdateAppBean parseJson(String json) {
-                        UpdateAppBean updateAppBean = new UpdateAppBean();
-                        try {
-                            JSONObject jsonObject = new JSONObject(json);
-                            updateAppBean
-                                    //（必须）是否更新Yes,No
-                                    .setUpdate(jsonObject.optBoolean("update"))
-                                    //（必须）新版本号，
-                                    .setNewVersion(jsonObject.optString("new_version"))
-                                    //（必须）下载地址
-                                    .setApkFileUrl(jsonObject.optString("apk_file_url"))
-                                    //（必须）更新内容
-                                    .setUpdateLog(jsonObject.optString("update_log"))
-                                    //大小，不设置不显示大小，可以不设置
-                                    .setTargetSize(jsonObject.optString("target_size"))
-                                    //是否强制更新，可以不设置
-                                    .setConstraint(false)
-                                    //设置md5，可以不设置
-                                    .setNewMd5(jsonObject.optString("new_md5"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        return updateAppBean;
-                    }
 
                     /**
                      * 有新版本

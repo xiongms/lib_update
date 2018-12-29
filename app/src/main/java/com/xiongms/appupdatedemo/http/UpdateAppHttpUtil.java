@@ -3,9 +3,12 @@ package com.xiongms.appupdatedemo.http;
 import android.support.annotation.NonNull;
 
 import com.xiongms.update.HttpManager;
+import com.xiongms.update.UpdateAppBean;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
 import com.zhy.http.okhttp.callback.StringCallback;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.Map;
@@ -28,7 +31,7 @@ public class UpdateAppHttpUtil implements HttpManager {
      * @param callBack 回调
      */
     @Override
-    public void asyncGet(@NonNull String url, @NonNull Map<String, String> params, @NonNull final Callback callBack) {
+    public void asyncRequest(@NonNull String url, @NonNull Map<String, String> params, @NonNull final Callback callBack) {
         OkHttpUtils.get()
                 .url(url)
                 .params(params)
@@ -41,36 +44,22 @@ public class UpdateAppHttpUtil implements HttpManager {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        callBack.onResponse(response);
+                        UpdateAppBean updateAppBean = new UpdateAppBean();
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            updateAppBean.setUpdate(jsonObject.optBoolean("update"))
+                                    .setNewVersion(jsonObject.optString("new_version"))
+                                    .setApkFileUrl(jsonObject.optString("apk_file_url"))
+                                    .setTargetSize(jsonObject.optString("target_size"))
+                                    .setUpdateLog(jsonObject.optString("update_log"))
+                                    .setConstraint(jsonObject.optBoolean("constraint"))
+                                    .setNewMd5(jsonObject.optString("new_md5"));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        callBack.onResponse(updateAppBean);
                     }
                 });
-    }
-
-    /**
-     * 异步post
-     *
-     * @param url      post请求地址
-     * @param params   post请求参数
-     * @param callBack 回调
-     */
-    @Override
-    public void asyncPost(@NonNull String url, @NonNull Map<String, String> params, @NonNull final Callback callBack) {
-        OkHttpUtils.post()
-                .url(url)
-                .params(params)
-                .build()
-                .execute(new StringCallback() {
-                    @Override
-                    public void onError(Call call, Response response, Exception e, int id) {
-                        callBack.onError(validateError(e, response));
-                    }
-
-                    @Override
-                    public void onResponse(String response, int id) {
-                        callBack.onResponse(response);
-                    }
-                });
-
     }
 
     /**
