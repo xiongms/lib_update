@@ -453,7 +453,7 @@ public class UpdateAppManager {
          */
         public UpdateAppManager build() {
             //校验
-            if (getActivity() == null || getHttpManager() == null || TextUtils.isEmpty(getUpdateUrl())) {
+            if (getActivity() == null || getHttpManager() == null) {
                 throw new NullPointerException("必要参数不能为空");
             }
             if (TextUtils.isEmpty(getTargetPath())) {
