@@ -168,9 +168,6 @@ public class JavaActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 })
-                //以下设置，都是可选
-                //设置请求方式，默认get
-                .setPost(false)
                 //不显示通知栏进度条
 //                .dismissNotificationProgress()
                 //是否忽略版本
@@ -185,8 +182,6 @@ public class JavaActivity extends AppCompatActivity {
                 .setThemeColor(0xffffac5d)
                 //设置apk下砸路径，默认是在下载到sd卡下/Download/1.0.0/test.apk
 //                .setTargetPath(path)
-                //设置appKey，默认从AndroidManifest.xml获取，如果，使用自定义参数，则此项无效
-//                .setAppKey("ab55ce55Ac4bcP408cPb8c1Aaeac179c5f6f")
                 .setUpdateDialogFragmentListener(new IUpdateDialogFragmentListener() {
                     @Override
                     public void onUpdateNotifyDialogCancel(UpdateAppBean updateApp) {
@@ -354,16 +349,10 @@ public class JavaActivity extends AppCompatActivity {
                 .setHttpManager(new OkGoUpdateHttpUtil())
                 //必须设置，更新地址
                 .setUpdateUrl(mUpdateUrl1)
-
-                //以下设置，都是可选
-                //设置请求方式，默认get
-                .setPost(false)
                 //添加自定义参数，默认version=1.0.0（app的versionName）；apkKey=唯一表示（在AndroidManifest.xml配置）
                 .setParams(params)
                 //设置apk下砸路径，默认是在下载到sd卡下/Download/1.0.0/test.apk
                 .setTargetPath(path)
-                //设置appKey，默认从AndroidManifest.xml获取，如果，使用自定义参数，则此项无效
-//                .setAppKey("ab55ce55Ac4bcP408cPb8c1Aaeac179c5f6f")
 
                 .build()
                 //检测是否有新版本

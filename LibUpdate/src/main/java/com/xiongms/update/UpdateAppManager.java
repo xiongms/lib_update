@@ -45,7 +45,6 @@ public class UpdateAppManager {
 
     private UpdateAppBean mUpdateApp;
     private String mTargetPath;
-    private boolean isPost;
     private boolean mHideDialog;
     private boolean mShowIgnoreVersion;
     private boolean mDismissNotificationProgress;
@@ -64,7 +63,6 @@ public class UpdateAppManager {
         mTopPic = builder.getTopPic();
 
         mTargetPath = builder.getTargetPath();
-        isPost = builder.isPost();
         mParams = builder.getParams();
         mHideDialog = builder.isHideDialog();
         mShowIgnoreVersion = builder.isShowIgnoreVersion();
@@ -288,8 +286,6 @@ public class UpdateAppManager {
         private String mAppKey;
         //4,apk的下载路径
         private String mTargetPath;
-        //5,是否是post请求，默认是get
-        private boolean isPost;
         //6,自定义参数
         private Map<String, String> params;
         //7,是否隐藏对话框下载进度条
@@ -311,21 +307,6 @@ public class UpdateAppManager {
          */
         public Builder setParams(Map<String, String> params) {
             this.params = params;
-            return this;
-        }
-
-        public boolean isPost() {
-            return isPost;
-        }
-
-        /**
-         * 是否是post请求，默认是get
-         *
-         * @param post 是否是post请求，默认是get
-         * @return Builder
-         */
-        public Builder setPost(boolean post) {
-            isPost = post;
             return this;
         }
 
