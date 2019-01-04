@@ -12,7 +12,7 @@
         <service android:name="com.xiongms.update.service.DownloadService"/>
         <provider
             android:name="com.xiongms.update.UpdateFileProvider"
-            android:authorities="${applicationId}.fileProvider"
+            android:authorities="${applicationId}.updatefileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

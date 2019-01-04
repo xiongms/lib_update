@@ -120,7 +120,7 @@ public class AppUpdateUtils {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 //区别于 FLAG_GRANT_READ_URI_PERMISSION 跟 FLAG_GRANT_WRITE_URI_PERMISSION， URI权限会持久存在即使重启，直到明确的用 revokeUriPermission(Uri, int) 撤销。 这个flag只提供可能持久授权。但是接收的应用必须调用ContentResolver的takePersistableUriPermission(Uri, int)方法实现
                 intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
-                Uri fileUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".fileProvider", appFile);
+                Uri fileUri = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".updatefileProvider", appFile);
                 intent.setDataAndType(fileUri, "application/vnd.android.package-archive");
             } else {
                 intent.setDataAndType(Uri.fromFile(appFile), "application/vnd.android.package-archive");
